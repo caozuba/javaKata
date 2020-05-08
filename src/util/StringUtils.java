@@ -13,8 +13,8 @@ public class StringUtils {
    * toCamelCase("the-stealth-warrior"); // returns "theStealthWarrior"
    * toCamelCase("The_Stealth_Warrior"); // returns "TheStealthWarrior"
    * 
-   * @param input
-   * @return turned to camleCase String
+   * @param input literal string
+   * @return turned to camelCase String, empty String if input is empty or null
    */
   public static String toCamelCase(String input) {
     return null;
