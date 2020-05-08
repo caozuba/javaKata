@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Arrays;
+
 public class StringUtils {
   public static void main(String[] args) {
 
@@ -12,11 +14,20 @@ public class StringUtils {
    * Case, also often referred to as Pascal case). Examples:
    * toCamelCase("the-stealth-warrior"); // returns "theStealthWarrior"
    * toCamelCase("The_Stealth_Warrior"); // returns "TheStealthWarrior"
-   * 
+   *
    * @param input literal string
    * @return turned to camelCase String, empty String if input is empty or null
    */
   public static String toCamelCase(String input) {
-    return null;
+    if (input == null || input.equals("")) {
+      return "";
+    }
+    String[] words = input.split("[-_]+");
+    return Arrays.stream(words, 1, words.length)
+                 .map(s -> s.substring(0, 1)
+                            .toUpperCase() + s.substring(1))
+                 .reduce(words[0], String::concat);
+    //@formatter:on
   }
+
 }

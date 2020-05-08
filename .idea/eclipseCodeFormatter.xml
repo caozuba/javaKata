@@ -8,13 +8,12 @@
     </option>
     <option name="selectedGlobalProfile">
       <Settings>
-        <option name="formatter" value="ECLIPSE" />
         <option name="id" value="1587955272346" />
         <option name="importOrderConfigFilePath" value="$PROJECT_DIR$/../eclipseFormatter.xml" />
         <option name="importOrdering" value="ECLIPSE_44" />
         <option name="name" value="Eclipse" />
-        <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../eclipseFormatter.xml" />
-        <option name="selectedJavaProfile" value="mine" />
+        <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../CuongEclipseFormatter.xml" />
+        <option name="selectedJavaProfile" value="Cuong" />
       </Settings>
     </option>
   </component>
