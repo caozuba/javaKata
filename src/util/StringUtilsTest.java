@@ -10,7 +10,8 @@ import java.util.Collection;
 
 public class StringUtilsTest {
 
-  @RunWith(value = Parameterized.class) public static class test_toCamelCase {
+  @RunWith(value = Parameterized.class)
+  public static class test_toCamelCase {
 
     @Parameterized.Parameter()
     public String input;
@@ -19,7 +20,8 @@ public class StringUtilsTest {
     @Parameterized.Parameter(2)
     public String assertMsg;
 
-    @Parameterized.Parameters(name = " {index}: {2} ") public static Collection<Object[]> data() {
+    @Parameterized.Parameters(name = " {index}: {2} ")
+    public static Collection<Object[]> data() {
       //@formatter:off
       return Arrays.asList(new Object[][] {
         { null, "", "return empty string when arg is null" },
@@ -44,10 +46,13 @@ public class StringUtilsTest {
     }
 
     // @formatter:on
-    @Test public void test() {
+    @Test
+    public void test() {
       String errMsg = String.format(assertMsg + "\nshould return 「%s」if input is 「%s」」", expected, input);
       String actual = StringUtils.toCamelCase(input);
       Assert.assertEquals(errMsg, expected, actual);
+      System.out.println("errMsg = " + errMsg);
     }
   }
+  
 }

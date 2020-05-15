@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class StringUtils {
   public static void main(String[] args) {
-
+    System.out.println("\"\" = " + "");
   }
 
   /**
@@ -23,11 +23,13 @@ public class StringUtils {
       return "";
     }
     String[] words = input.split("[-_]+");
+
     return Arrays.stream(words, 1, words.length)
-                 .map(s -> s.substring(0, 1)
-                            .toUpperCase() + s.substring(1))
+                 .map(s -> s.substring(0, 1).toUpperCase() + s.substring(1))
                  .reduce(words[0], String::concat);
-    //@formatter:on
   }
 
+  public static int[] testInt(int a, int b) {
+    return new int[] { 1, 2 };
+  }
 }
