@@ -1,0 +1,62 @@
+//def arr = _1.split(",") as String[];
+//def result = "";
+//for (int i = 0; i < arr.size(); i++) {
+//    def (type, varName) = arr[i].trim().split();
+//    result += "@org.junit.runners.Parameterized.Parameter(${i + 2})\n";
+//    result += "public ${type} ${varName};\n";
+//};
+//return result;
+//
+////make params list only
+//try {
+//    def arr = _1.split(",") as String[];
+//    def list = [];
+//    for (int i = 0; i < arr.size(); i++) {
+//        def (_, varName) = arr[i].trim().split();
+//        list.add(varName);
+//    };
+//    return list.join(", ");
+//} catch (e) {
+//    return "";
+//}
+//
+//
+////assert string
+//
+//def _1 = "";
+//def _2 = "int[]";
+//def formatSymbol = { type, varName ->
+//    if (type.contains("[")) {
+//        return ["「%s」", "java.util.Arrays.toString(${varName})"] as String[];
+//    };
+//    if (type == "int" || type == "byte" || type == "short" || type == "long" || type == "bigint") {
+//        return ["「%d」", varName] as String[];
+//    } else if (type == "boolean") {
+//        return ["「%b」", varName] as String[];
+//    } else if (type == "float" || type == "double") {
+//        return ["「%f」", varName] as String[];
+//    } else if (type == "char") {
+//        return ["「%c」", varName] as String[];
+//    } else {
+//        return ["「%s」", varName] as String[];
+//    }
+//}
+//def expect = formatSymbol(_2, "expected");
+//def result = "\"\\nShould return ${expect[0]} if";
+//try {
+//    def varNameList = [];
+//    def arr = _1.split(",") as String[];
+//    for (int i = 0; i < arr.size(); i++) {
+//        def (type, varName) = arr[i].trim().split();
+//        def (appendedText, changedVarName) = formatSymbol(type, varName);
+//        result += " ${varName} is ${appendedText},";
+//        varNameList.add(changedVarName);
+//    };
+//    result = result.substring(0, result.length() - 1) + "\", ${expect[1]}, " + varNameList.join(", ");
+//} catch (e) {
+//    result = "\"\\nShould return ${expect[0]}" + "\", ${expect[1]}";
+//}
+//
+//// return result;
+//println result
+//
