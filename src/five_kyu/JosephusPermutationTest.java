@@ -31,11 +31,11 @@ public class JosephusPermutationTest {
         { "", new Object[] { 3, 6, 2, 7, 5, 1, 4 }, new Object[] { 1, 2, 3, 4, 5, 6, 7 }, 3 },
         { "", new Object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, new Object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 1 },
         { "", new Object[] { 2, 4, 6, 8, 10, 3, 7, 1, 9, 5 }, new Object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 2 },
-        { "", new Object[] { 2, 4, 6, 8, 10, 3, 7, 1, 9, 5 }, new Object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 2 },
         {
           "",
           new Object[] { "e", "s", "W", "o", "C", "d", "r", "a" },
-          new Object[] { "C", "o", "d", "e", "W", "a", "r", "s" }
+          new Object[] { "C", "o", "d", "e", "W", "a", "r", "s" },
+          4
         },
         { "", new Object[] {}, new Object[] {}, 3 }
 

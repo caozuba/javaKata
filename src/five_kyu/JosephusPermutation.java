@@ -1,6 +1,5 @@
 package five_kyu;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,7 +33,9 @@ public class JosephusPermutation {
   }
 
   public static <T> List<T> josephusPermutation(final List<T> items, final int k) {
-    return new ArrayList<>();
+    for (int i = 1; i <= items.size(); i++) {
+
+    }
   }
 
 }
