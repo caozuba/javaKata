@@ -38,7 +38,11 @@ public class JosephusPermutationTest {
           4
         },
         { "return empty list if argument is empty", new Object[] {}, new Object[] {}, 3 },
-        { "return items if size less than k", new Object[] { "e", "f", "g" }, new Object[] { "e", "f", "g" }, 4 },
+        {
+          "return continue to count until get number if k > items size", new Object[] { "e", "g", "f" }, new Object[] {
+          "e", "f", "g"
+        }, 4
+        },
 
       });
     }

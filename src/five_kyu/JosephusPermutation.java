@@ -37,10 +37,7 @@ public class JosephusPermutation {
     List<T> results = new ArrayList<>();
     List<T> itemsList = new ArrayList<>(items);
     int count = 1;
-    if (itemsList.size() < k) {
-      return itemsList;
-    }
-    do {
+    while (itemsList.size() != 0) {
       ArrayList<Integer> removeList = new ArrayList<Integer>();
       for (int i = 1; i <= itemsList.size(); i++) {
         if (count == k) {
@@ -54,7 +51,7 @@ public class JosephusPermutation {
       for (int i = removeList.size(); i > 0; i--) {
         itemsList.remove(removeList.get(i - 1) - 1);
       }
-    } while (itemsList.size() != 0);
+    }
     return results;
   }
 
