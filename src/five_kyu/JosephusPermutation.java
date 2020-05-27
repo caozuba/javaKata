@@ -34,25 +34,14 @@ public class JosephusPermutation {
   }
 
   public static <T> List<T> josephusPermutation(final List<T> items, final int k) {
-    List<T> results = new ArrayList<>();
-    List<T> itemsList = new ArrayList<>(items);
-    int count = 1;
-    while (itemsList.size() != 0) {
-      ArrayList<Integer> removeList = new ArrayList<Integer>();
-      for (int i = 1; i <= itemsList.size(); i++) {
-        if (count == k) {
-          results.add(itemsList.get(i - 1));
-          removeList.add(i);
-          count = 1;
-        } else {
-          count++;
-        }
-      }
-      for (int i = removeList.size(); i > 0; i--) {
-        itemsList.remove(removeList.get(i - 1) - 1);
-      }
+    List<T> permutation = new ArrayList<>();
+    List<T> list = new ArrayList<>(items);
+    int position = 0;
+    while (list.size() > 0) {
+      position = (position + k - 1) % list.size();
+      permutation.add(list.remove((int) position));
     }
-    return results;
+    return permutation;
   }
 
 }

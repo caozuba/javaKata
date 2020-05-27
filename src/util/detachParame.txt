@@ -1,11 +1,62 @@
-//def arr = _1.split(",") as String[];
-//def result = "";
-//for (int i = 0; i < arr.size(); i++) {
-//    def (type, varName) = arr[i].trim().split();
-//    result += "@org.junit.runners.Parameterized.Parameter(${i + 2})\n";
-//    result += "public ${type} ${varName};\n";
-//};
-//return result;
+//Parameters
+
+def _1 = "int a";
+def _2 = "String";
+def arr = _1.split(",") as String[];
+def result = "";
+def expectedStart = 0;
+try {
+    for (int i = 0; i < arr.size(); i++) {
+        def (type, varName) = arr[i].trim().split();
+        result += "@org.junit.runners.Parameterized.Parameter(${i})\n";
+        result += "public ${type} ${varName};\n";
+    };
+    expectedStart = arr.size()
+} catch (e) {
+    expectedStart = 0;
+}
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart})\n";
+result += "public ${_2} expected;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 1})\n";
+result += "public String assertMsg;\n\n";
+result += "@org.junit.runners.Parameterized.Parameters(name = \" {index}: {${expectedStart + 1}} \")"
+// return result;
+println result
+
+//Parameters exception
+def _1 = "int a";
+def _2 = "String";
+def arr = _1.split(",") as String[];
+def result = "";
+def expectedStart = 0;
+try {
+    for (int i = 0; i < arr.size(); i++) {
+        def (type, varName) = arr[i].trim().split();
+        result += "@org.junit.runners.Parameterized.Parameter(${i})\n";
+        result += "public ${type} ${varName};\n";
+    };
+    expectedStart = arr.size()
+} catch (e) {
+    expectedStart = 0;
+}
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart})\n";
+result += "public ${_2} expected;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 1})\n";
+result += "public java.lang.Class<? extends java.lang.Exception> expectedException;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 2})\n";
+result += "public java.lang.String expectedExceptionMsg;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 3})\n";
+result += "public String assertMsg;\n\n";
+
+result += "@org.junit.Rule\n";
+result += "public org.junit.rules.ExpectedException thrown = org.junit.rules.ExpectedException.none();\n\n";
+
+result += "@org.junit.runners.Parameterized.Parameters(name = \" {index}: {${expectedStart + 3}} \")"
+// return result;
+println result
+
+
+
 //
 ////make params list only
 //try {

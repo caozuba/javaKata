@@ -56,4 +56,5 @@ public class JosephusPermutationTest {
       Assert.assertEquals(errMsg, Arrays.asList(expected), actual);
     }
   }
+  
 }

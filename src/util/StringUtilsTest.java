@@ -54,5 +54,5 @@ public class StringUtilsTest {
       System.out.println("errMsg = " + errMsg);
     }
   }
-  
+
 }
