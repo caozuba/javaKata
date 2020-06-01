@@ -1,0 +1,113 @@
+//Parameters
+
+def _1 = "int a";
+def _2 = "String";
+def arr = _1.split(",") as String[];
+def result = "";
+def expectedStart = 0;
+try {
+    for (int i = 0; i < arr.size(); i++) {
+        def (type, varName) = arr[i].trim().split();
+        result += "@org.junit.runners.Parameterized.Parameter(${i})\n";
+        result += "public ${type} ${varName};\n";
+    };
+    expectedStart = arr.size()
+} catch (e) {
+    expectedStart = 0;
+}
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart})\n";
+result += "public ${_2} expected;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 1})\n";
+result += "public String assertMsg;\n\n";
+result += "@org.junit.runners.Parameterized.Parameters(name = \" {index}: {${expectedStart + 1}} \")"
+// return result;
+println result
+
+//Parameters exception
+def _1 = "int a";
+def _2 = "String";
+def arr = _1.split(",") as String[];
+def result = "";
+def expectedStart = 0;
+try {
+    for (int i = 0; i < arr.size(); i++) {
+        def (type, varName) = arr[i].trim().split();
+        result += "@org.junit.runners.Parameterized.Parameter(${i})\n";
+        result += "public ${type} ${varName};\n";
+    };
+    expectedStart = arr.size()
+} catch (e) {
+    expectedStart = 0;
+}
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart})\n";
+result += "public ${_2} expected;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 1})\n";
+result += "public java.lang.Class<? extends java.lang.Exception> expectedException;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 2})\n";
+result += "public java.lang.String expectedExceptionMsg;\n";
+result += "@org.junit.runners.Parameterized.Parameter(${expectedStart + 3})\n";
+result += "public String assertMsg;\n\n";
+
+result += "@org.junit.Rule\n";
+result += "public org.junit.rules.ExpectedException thrown = org.junit.rules.ExpectedException.none();\n\n";
+
+result += "@org.junit.runners.Parameterized.Parameters(name = \" {index}: {${expectedStart + 3}} \")"
+// return result;
+println result
+
+
+
+//
+////make params list only
+//try {
+//    def arr = _1.split(",") as String[];
+//    def list = [];
+//    for (int i = 0; i < arr.size(); i++) {
+//        def (_, varName) = arr[i].trim().split();
+//        list.add(varName);
+//    };
+//    return list.join(", ");
+//} catch (e) {
+//    return "";
+//}
+//
+//
+////assert string
+//
+//def _1 = "";
+//def _2 = "int[]";
+//def formatSymbol = { type, varName ->
+//    if (type.contains("[")) {
+//        return ["「%s」", "java.util.Arrays.toString(${varName})"] as String[];
+//    };
+//    if (type == "int" || type == "byte" || type == "short" || type == "long" || type == "bigint") {
+//        return ["「%d」", varName] as String[];
+//    } else if (type == "boolean") {
+//        return ["「%b」", varName] as String[];
+//    } else if (type == "float" || type == "double") {
+//        return ["「%f」", varName] as String[];
+//    } else if (type == "char") {
+//        return ["「%c」", varName] as String[];
+//    } else {
+//        return ["「%s」", varName] as String[];
+//    }
+//}
+//def expect = formatSymbol(_2, "expected");
+//def result = "\"\\nShould return ${expect[0]} if";
+//try {
+//    def varNameList = [];
+//    def arr = _1.split(",") as String[];
+//    for (int i = 0; i < arr.size(); i++) {
+//        def (type, varName) = arr[i].trim().split();
+//        def (appendedText, changedVarName) = formatSymbol(type, varName);
+//        result += " ${varName} is ${appendedText},";
+//        varNameList.add(changedVarName);
+//    };
+//    result = result.substring(0, result.length() - 1) + "\", ${expect[1]}, " + varNameList.join(", ");
+//} catch (e) {
+//    result = "\"\\nShould return ${expect[0]}" + "\", ${expect[1]}";
+//}
+//
+//// return result;
+//println result
+//
