@@ -1,5 +1,6 @@
 package six_kyu.split_string;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -7,14 +8,12 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
-
 public class SplitStringTest {
 
   @RunWith(value = Parameterized.class)
   public static class test_splitString {
 
-    @Parameterized.Parameter(0)
+    @Parameterized.Parameter()
     public String s;
     @Parameterized.Parameter(1)
     public String[] expected;
@@ -31,7 +30,8 @@ public class SplitStringTest {
         { "abcde", new String[] { "ab", "cd", "e_" }, "should have odd string" },
         { "LovePizza", new String[] { "Lo", "ve", "Pi", "zz", "a_" }, "should have odd string" },
         { "a", new String[] { "a_" }, "should have one element" },
-        { "", new String[] {}, "should return empty array" },
+        { "", new String[] { "" }, "should handle empty string" },
+        { "I Love Pizza", new String[] { "I ", "Lo", "ve", " P", "iz", "za" }, "test space string" },
       });
     }
 
@@ -40,7 +40,7 @@ public class SplitStringTest {
     public void test() {
       String errMsg = String.format(assertMsg + "\nShould return 「%s」 if s is 「%s」", Arrays.toString(expected), s);
       String[] actual = SplitString.splitString(s);
-      assertEquals(errMsg, expected, actual);
+      Assert.assertEquals(errMsg, expected, actual);
     }
   }
 }

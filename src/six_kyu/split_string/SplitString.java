@@ -18,21 +18,12 @@ public class SplitString {
    * StringSplit.solution("abc") // should return {"ab", "c_"}
    * StringSplit.solution("abcdef") // should return {"ab", "cd", "ef"}
    *
-   * @param s
-   * @return
+   * @param s input string
+   * @return an array of spliced string
    */
   public static String[] splitString(String s) {
-    int length = s.length();
-    String[] strings = new String[length / 2 + length % 2];
-
-    for (int i = 0; i < length / 2; i++) {
-      strings[i] = s.substring(i * 2, i * 2 + 2);
-    }
-
-    if (length % 2 == 1) {
-      strings[strings.length - 1] = s.substring(length - 1, length) + "_";
-    }
-
-    return strings;
+    s = s.length() % 2 == 0 ? s : s + "_";
+    return s.split("(?<=\\G.{2})");
   }
+
 }
