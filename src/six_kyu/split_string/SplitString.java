@@ -22,8 +22,10 @@ public class SplitString {
    * @return an array of spliced string
    */
   public static String[] splitString(String s) {
+    //    s = s.length() % 2 == 0 ? s : s + "_";
+    //    return s.split("(?<=\\G.{2})");
     s = s.length() % 2 == 0 ? s : s + "_";
-    return s.split("(?<=\\G.{2})");
+    return s.split(("(?<=\\G.{2})"));
   }
 
 }
