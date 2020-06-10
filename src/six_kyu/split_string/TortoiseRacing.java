@@ -25,18 +25,8 @@ public class TortoiseRacing {
       return null;
     }
 
-    float time = (float) g / (v2 - v1);
-    int hour = (int) time;
-    float remainHour = time - hour;
-
-    float remainMinute = remainHour * 60;
-    int minute = (int) remainMinute;
-
-    float remainSecond = remainMinute - minute;
-
-    int second = (int) (remainSecond * 60);
-    return new int[] { hour, minute, second };
-    // your code
+    int totalSecond = (g * 3600) / (v2 - v1);
+    return new int[] { totalSecond / 3600, (totalSecond % 3600) / 60, totalSecond % 60 };
   }
 
 }
