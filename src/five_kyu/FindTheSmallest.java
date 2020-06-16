@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FindTheSmallest {
   public static void main(String[] args) {
-    System.out.println(Arrays.toString(smallest("1235028968")));
+    System.out.println(Arrays.toString(smallest(11860031527116496L)));
   }
 
   /**
@@ -33,7 +33,7 @@ public class FindTheSmallest {
    * @param n
    * @return
    */
-  public static long[] smallest(String n) {
+  public static long[] smallest(long n) {
     // your code
     List<Integer> digits = toArrayInt(n);
     int minDigitIndex = 0;
@@ -75,16 +75,16 @@ public class FindTheSmallest {
       toIndex = 1;
     }
     return new long[] {
-      Integer.parseInt(newNumber), fromIndex, toIndex
+      Long.parseLong(newNumber), fromIndex, toIndex
     };
   }
 
-  private static List<Integer> toArrayInt(String number) {
-    //    String stringNumber = String.valueOf(number);
+  private static List<Integer> toArrayInt(long number) {
+    String stringNumber = String.valueOf(number);
     List<Integer> result = new ArrayList<>();
 
-    for (int i = 0; i < number.length(); i++) {
-      result.add(Integer.parseInt(String.valueOf(number.charAt(i))));
+    for (int i = 0; i < stringNumber.length(); i++) {
+      result.add(Integer.parseInt(String.valueOf(stringNumber.charAt(i))));
     }
     return result;
   }
