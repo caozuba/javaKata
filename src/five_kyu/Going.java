@@ -1,5 +1,8 @@
 package five_kyu;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Going {
   public static void main(String[] args) {
 
@@ -30,19 +33,25 @@ public class Going {
    * @return
    */
   public static double going(int n) {
-    int sumFactorials = 0;
-    for (int i = 1; i <= n; i++) {
-      sumFactorials += factorial(i);
+    double result = 1.0;
+    for (int i = 0; i < n - 1; i++) {
+      result += denominator(n, i);
     }
-    double ratio = (double) (1 / factorial(n));
-    return ratio * sumFactorials;
+
+    return truncate6(result);
   }
 
-  public static long factorial(int n) {
-    long fact = 1;
-    for (int i = 2; i <= n; i++) {
-      fact = fact * i;
+  public static double truncate6(double input) {
+    DecimalFormat df = new DecimalFormat("#.######");
+    df.setRoundingMode(RoundingMode.FLOOR);
+    return new Double(df.format(input));
+  }
+
+  public static double denominator(int n, int times) {
+    double result = (double) 1 / n;
+    for (int i = 1; i <= times; i++) {
+      result /= (n - i);
     }
-    return fact;
+    return result;
   }
 }
