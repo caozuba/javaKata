@@ -1,8 +1,5 @@
 package five_kyu;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 public class Going {
   public static void main(String[] args) {
 
@@ -34,24 +31,11 @@ public class Going {
    */
   public static double going(int n) {
     double result = 1.0;
-    for (int i = 0; i < n - 1; i++) {
-      result += denominator(n, i);
+    double frac = 1.0;
+    while (n > 1) {
+      frac /= n--;
+      result += frac;
     }
-
-    return truncate6(result);
-  }
-
-  public static double truncate6(double input) {
-    DecimalFormat df = new DecimalFormat("#.######");
-    df.setRoundingMode(RoundingMode.FLOOR);
-    return new Double(df.format(input));
-  }
-
-  public static double denominator(int n, int times) {
-    double result = (double) 1 / n;
-    for (int i = 1; i <= times; i++) {
-      result /= (n - i);
-    }
-    return result;
+    return (int) (result * 1e6) / 1e6;
   }
 }
