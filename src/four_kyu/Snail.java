@@ -39,7 +39,7 @@ public class Snail {
     int sideLength = array.length;
     int totalElement = sideLength * sideLength;
     Pointer pointer = new Pointer(array, 0, -1);
-    for (int i = 0; i < totalElement; i++) {
+    for (int i = 0; i < totalElement / 2 + 1; i++) {
       //      result.add(pointer.currentPositionValue());
       //      if (sideLength == 1) {
       //        break;
