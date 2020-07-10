@@ -1,5 +1,11 @@
 package four_kyu;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class NextBiggerNumber {
   public static void main(String[] args) {
 
@@ -27,6 +33,37 @@ public class NextBiggerNumber {
    * @return
    */
   public static long nextBiggerNumber(long n) {
-    return n;
+    List<Integer> digits = Stream.of(String.valueOf(n).split("")).map(Integer::parseInt).collect(Collectors.toList());
+
+    int pivotIndex = -1;
+    for (int i = digits.size() - 1; i > 0; i--) {
+      if (digits.get(i) > digits.get(i - 1)) {
+        pivotIndex = i - 1;
+        break;
+      }
+    }
+
+    if (pivotIndex == -1) {
+      return pivotIndex;
+    }
+    int pivotDigit = digits.get(pivotIndex);
+    List<Integer> leftPart = new ArrayList<>(digits.subList(0, pivotIndex));
+    List<Integer> rightPart = new ArrayList<>(digits.subList(pivotIndex + 1, digits.size()));
+
+    Collections.sort(rightPart);
+    int swapIndex = rightPart.size() - 1;
+    for (int i = 0; i < rightPart.size(); i++) {
+      if (rightPart.get(i) > pivotDigit) {
+        leftPart.add(rightPart.get(i));
+        swapIndex = i;
+        break;
+      }
+    }
+    rightPart.set(swapIndex, pivotDigit);
+    leftPart.addAll(rightPart);
+
+    String finalNumber = leftPart.stream().map(String::valueOf).collect(Collectors.joining(""));
+    return Long.parseLong(finalNumber);
+
   }
 }
