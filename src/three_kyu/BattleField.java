@@ -39,36 +39,16 @@ public class BattleField {
           return false;
         }
 
-        if (haveLengthHorizontal(field, row, col, battleShipSize + 1)) {
+        if (haveLengthInOneDimension(field, row, col, battleShipSize + 1)) {
           return false;
-        } else {
-          if (haveLengthHorizontal(field, row, col, battleShipSize)) {
-            battleship--;
-            continue;
-          } else if (haveLengthHorizontal(field, row, col, cruiserSize)) {
-            cruiser--;
-            continue;
-          } else if (haveLengthHorizontal(field, row, col, destroyerSize)) {
-            destroyer--;
-            continue;
-          }
         }
-
-        if (haveLengthVertical(field, row, col, battleShipSize + 1)) {
-          return false;
-        } else {
-          if (haveLengthVertical(field, row, col, battleShipSize)) {
-            battleship--;
-            continue;
-          } else if (haveLengthVertical(field, row, col, cruiserSize)) {
-            cruiser--;
-            continue;
-          } else if (haveLengthVertical(field, row, col, destroyerSize)) {
-            destroyer--;
-            continue;
-          }
-        }
-        if (haveLengthHorizontal(field, row, col, submarineSize) && haveLengthVertical(field, row, col,
+        if (haveLengthInOneDimension(field, row, col, battleShipSize)) {
+          battleship--;
+        } else if (haveLengthInOneDimension(field, row, col, cruiserSize)) {
+          cruiser--;
+        } else if (haveLengthInOneDimension(field, row, col, destroyerSize)) {
+          destroyer--;
+        } else if (haveLengthHorizontal(field, row, col, submarineSize) && haveLengthVertical(field, row, col,
           submarineSize)) {
           submarine--;
         }
@@ -77,6 +57,10 @@ public class BattleField {
     }
 
     return battleship == 0 && cruiser == 0 && destroyer == 0 && submarine == 0;
+  }
+
+  private static boolean haveLengthInOneDimension(int[][] field, int row, int col, int shipSize) {
+    return haveLengthHorizontal(field, row, col, shipSize) || haveLengthVertical(field, row, col, shipSize);
   }
 
   private static boolean haveContact(int[][] field, int row, int col) {
