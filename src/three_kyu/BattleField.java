@@ -1,6 +1,7 @@
 package three_kyu;
 
 public class BattleField {
+
   public static void main(String[] args) {
 
   }
@@ -23,7 +24,95 @@ public class BattleField {
    * @return
    */
   public static boolean fieldValidator(int[][] field) {
-    // your code here!
-    return false;
+    final int SIDE = 10;
+    int battleship = 1;
+    final int battleShipSize = 4;
+    int cruiser = 2;
+    final int cruiserSize = 3;
+    int destroyer = 3;
+    final int destroyerSize = 2;
+    int submarine = 4;
+    final int submarineSize = 1;
+    for (int row = 0; row < SIDE; row++) {
+      for (int col = 0; col < SIDE; col++) {
+        if (haveContact(field, row, col)) {
+          return false;
+        }
+
+        if (haveLengthHorizontal(field, row, col, battleShipSize + 1)) {
+          return false;
+        } else {
+          if (haveLengthHorizontal(field, row, col, battleShipSize)) {
+            battleship--;
+            continue;
+          } else if (haveLengthHorizontal(field, row, col, cruiserSize)) {
+            cruiser--;
+            continue;
+          } else if (haveLengthHorizontal(field, row, col, destroyerSize)) {
+            destroyer--;
+            continue;
+          }
+        }
+
+        if (haveLengthVertical(field, row, col, battleShipSize + 1)) {
+          return false;
+        } else {
+          if (haveLengthVertical(field, row, col, battleShipSize)) {
+            battleship--;
+            continue;
+          } else if (haveLengthVertical(field, row, col, cruiserSize)) {
+            cruiser--;
+            continue;
+          } else if (haveLengthVertical(field, row, col, destroyerSize)) {
+            destroyer--;
+            continue;
+          }
+        }
+        if (haveLengthHorizontal(field, row, col, submarineSize) && haveLengthVertical(field, row, col,
+          submarineSize)) {
+          submarine--;
+        }
+
+      }
+    }
+
+    return battleship == 0 && cruiser == 0 && destroyer == 0 && submarine == 0;
   }
+
+  private static boolean haveContact(int[][] field, int row, int col) {
+    if (row == field.length - 1 || col == field[0].length - 1) {
+      return false;
+    }
+    return field[row][col] + field[row + 1][col + 1] == 2 || field[row + 1][col] + field[row][col + 1] == 2;
+  }
+
+  private static boolean haveLengthHorizontal(int[][] field, int row, int col, int shipSize) {
+    if (col > field[0].length - shipSize) {
+      return false;
+    }
+    if (col > 0 && field[row][col - 1] == 1) {
+      return false;
+    }
+    int sum = 0;
+    for (int i = 0; i < shipSize; i++) {
+      sum += field[row][col + i];
+    }
+    return sum == shipSize;
+  }
+
+  private static boolean haveLengthVertical(int[][] field, int row, int col, int shipSize) {
+    if (row > field.length - shipSize) {
+      return false;
+    }
+    if (row > 0 && field[row - 1][col] == 1) {
+      return false;
+    }
+
+    int sum = 0;
+    for (int i = 0; i < shipSize; i++) {
+      sum += field[row + i][col];
+    }
+    return sum == shipSize;
+  }
+
 }
